@@ -323,12 +323,12 @@ class RelationHandler
         // Now, populate the internal itemArray and tableArray arrays:
         // If MM, then call this function to do that:
         if ($MMtable) {
-            if ($MMuid) {
-                $this->readMM($MMtable, $MMuid);
-                $this->purgeItemArray();
-            } else {
+            if (!$MMuid || substr($MMuid, 0, 3) === 'NEW') {
                 // Revert to readList() for new records in order to load possible default values from $itemlist
                 $this->readList($itemlist, $conf);
+                $this->purgeItemArray();
+            } else {
+                $this->readMM($MMtable, $MMuid);
                 $this->purgeItemArray();
             }
         } elseif ($MMuid && isset($conf['foreign_field']) && (bool)$conf['foreign_field']) {
