@@ -206,6 +206,7 @@ class GroupElement extends AbstractFormElement
             $html[] =           '>';
             $html[] =               implode(LF, $selectorOptionsHtml);
             $html[] =           '</select>';
+            $html[] =           '<input type="hidden" name="' . htmlspecialchars($elementName) . '" value="' . htmlspecialchars(implode(',', $listOfSelectedValues)) . '" />';
             $html[] =       '</div>';
             $html[] =       '<div class="form-wizards-items-aside">';
             $html[] =       '</div>';
